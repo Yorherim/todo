@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 
 import styles from "./App.module.scss";
@@ -28,8 +28,6 @@ function App() {
     },
   ]);
 
-  //console.log(allTasks);
-
   const handlers = {
     addTask: (todolistId: string, taskTitle: string) => {
       setAllTasks(
@@ -44,12 +42,13 @@ function App() {
   };
 
   const renders = {
-    todolists: () => (
+    todolists: () =>
       todolists.map((todolist) => {
-        let tasks = [] as Task[]
+        let tasks = [] as Task[];
         for (let i = 0; i < allTasks.length; i++) {
           if (allTasks[i].todolistId === todolist.id) {
-            tasks = allTasks[i].tasks
+            tasks = allTasks[i].tasks;
+            break;
           }
         }
         return (
@@ -60,16 +59,13 @@ function App() {
             tasks={tasks}
           />
         );
-      })
-    )
-  }
+      }),
+  };
 
   return (
     <main className={styles.app}>
       <div className="container">
-        <div className={styles.todolists}>
-          {renders.todolists()}
-        </div>
+        <div className={styles.todolists}>{renders.todolists()}</div>
       </div>
     </main>
   );
