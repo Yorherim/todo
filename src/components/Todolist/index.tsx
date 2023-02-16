@@ -28,7 +28,9 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
           onChange={handlers.changeInput}
           type={"text"}
         />
-        <button onClick={handlers.addTask} className={styles.addTaskButton}>+</button>
+        <button onClick={handlers.addTask} className={styles.addTaskButton}>
+          +
+        </button>
       </div>
 
       <ul className={styles.tasks}>
@@ -44,9 +46,24 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
       </ul>
 
       <div className={styles.buttons}>
-        <button className={styles.button}>All</button>
-        <button className={styles.button}>Active</button>
-        <button className={styles.button}>Completed</button>
+        <button
+          className={styles.button}
+          onClick={() => handlersState.changeTasksFilter(todolistInfo.id, "all")}
+        >
+          All
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => handlersState.changeTasksFilter(todolistInfo.id, "active")}
+        >
+          Active
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => handlersState.changeTasksFilter(todolistInfo.id, "completed")}
+        >
+          Completed
+        </button>
       </div>
     </div>
   );

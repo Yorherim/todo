@@ -5,12 +5,16 @@ import styles from "./App.module.scss";
 import { Todolist } from "../";
 import { Task } from "../Task/types";
 
+export type todolistsState = { id: string; title: string; tasksFilter: TasksFilter }[];
+export type tasksState = { todolistId: string; tasks: Task[] }[];
+export type TasksFilter = "all" | "active" | "completed";
+
 function App() {
-  const [todolists, setTodolists] = useState([
-    { id: "1", title: "What I need to learn" },
-    { id: "2", title: "What I need to buy" },
+  const [todolists, setTodolists] = useState<todolistsState>([
+    { id: "1", title: "What I need to learn", tasksFilter: "all" },
+    { id: "2", title: "What I need to buy", tasksFilter: "all" },
   ]);
-  const [allTasks, setAllTasks] = useState([
+  const [allTasks, setAllTasks] = useState<tasksState>([
     {
       todolistId: "1",
       tasks: [
@@ -59,6 +63,16 @@ function App() {
         }),
       );
     },
+    changeTasksFilter: (todolistId: string, filter: TasksFilter) => {
+      setTodolists(
+        todolists.map((todolist) => {
+          if (todolist.id === todolistId) {
+            return { ...todolist, tasksFilter: filter };
+          }
+          return todolist;
+        }),
+      );
+    },
   };
 
   const renders = {
@@ -71,6 +85,13 @@ function App() {
             break;
           }
         }
+
+        if (todolist.tasksFilter === "active") {
+          tasks = tasks.filter((task) => !task.isCompleted);
+        } else if (todolist.tasksFilter === "completed") {
+          tasks = tasks.filter((task) => task.isCompleted);
+        }
+
         return (
           <Todolist
             key={todolist.id}
