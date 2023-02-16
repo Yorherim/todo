@@ -2,13 +2,18 @@ import { ChangeEvent, useState } from "react";
 
 import styles from "./Todolist.module.scss";
 import { TodolistPropsTypes } from "./types";
+import { Task } from "../";
 
-function Todolist({ todolistInfo, addTask, tasks }: TodolistPropsTypes) {
+function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
   const [inputText, setInputText] = useState<string>("");
 
   const handlers = {
     changeInput: (e: ChangeEvent<HTMLInputElement>) => {
       setInputText(e.currentTarget.value);
+    },
+    addTask: () => {
+      handlersState.addTask(todolistInfo.id, inputText);
+      setInputText("");
     },
   };
 
@@ -20,16 +25,19 @@ function Todolist({ todolistInfo, addTask, tasks }: TodolistPropsTypes) {
           placeholder={"Write title task..."}
           className={styles.input}
           value={inputText}
-          onChange={(e) => handlers.changeInput(e)}
+          onChange={handlers.changeInput}
           type={"text"}
         />
-        <button onClick={() => addTask(todolistInfo.id, inputText)}>+</button>
+        <button onClick={handlers.addTask}>+</button>
       </div>
       <ul>
         {tasks.map((task) => (
-          <li>
-            <input type="checkbox" /> <span>{task.title}</span>
-          </li>
+          <Task
+            key={task.id}
+            taskInfo={task}
+            todolistId={todolistInfo.id}
+            toggleCompletedTask={handlersState.toggleCompletedTask}
+          />
         ))}
       </ul>
       <div>

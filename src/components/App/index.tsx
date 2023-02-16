@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 import styles from "./App.module.scss";
 import { Todolist } from "../";
-import { Task } from "../Todolist/types";
+import { Task } from "../Task/types";
 
 function App() {
   const [todolists, setTodolists] = useState([
@@ -14,26 +14,46 @@ function App() {
     {
       todolistId: "1",
       tasks: [
-        { id: "1", title: "HTML&CSS" },
-        { id: "2", title: "React" },
-        { id: "3", title: "TypeScript" },
+        { id: "1", title: "HTML&CSS", isCompleted: true },
+        { id: "2", title: "React", isCompleted: false },
+        { id: "3", title: "TypeScript", isCompleted: false },
       ],
     },
     {
       todolistId: "2",
       tasks: [
-        { id: "4", title: "milk" },
-        { id: "5", title: "bread" },
+        { id: "4", title: "milk", isCompleted: false },
+        { id: "5", title: "bread", isCompleted: false },
       ],
     },
   ]);
 
-  const handlers = {
+  console.log(allTasks);
+
+  const handlersState = {
     addTask: (todolistId: string, taskTitle: string) => {
       setAllTasks(
         allTasks.map((tasksGroup) => {
           if (tasksGroup.todolistId === todolistId) {
-            tasksGroup.tasks.push({ id: nanoid(), title: taskTitle });
+            return {
+              ...tasksGroup,
+              tasks: [...tasksGroup.tasks, { id: nanoid(), title: taskTitle, isCompleted: false }],
+            };
+          }
+          return tasksGroup;
+        }),
+      );
+    },
+    toggleCompletedTask: (todolistId: string, taskId: string) => {
+      setAllTasks(
+        allTasks.map((tasksGroup) => {
+          if (tasksGroup.todolistId === todolistId) {
+            tasksGroup.tasks = tasksGroup.tasks.map((task) => {
+              if (task.id === taskId) {
+                return { ...task, isCompleted: !task.isCompleted };
+              }
+              return task;
+            });
           }
           return tasksGroup;
         }),
@@ -55,7 +75,7 @@ function App() {
           <Todolist
             key={todolist.id}
             todolistInfo={todolist}
-            addTask={handlers.addTask}
+            handlersState={handlersState}
             tasks={tasks}
           />
         );

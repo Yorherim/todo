@@ -1,10 +1,15 @@
+import { Task } from "../Task/types";
+
 export type TodolistPropsTypes = {
   todolistInfo: {
     id: string;
     title: string;
   };
-  addTask: (todolistId: string, taskTitle: string) => void;
   tasks: Task[];
+  handlersState: {
+    addTask: (todolistId: string, taskTitle: string) => void;
+    toggleCompletedTask: (todolistId: string, taskId: string) => void
+  }
 };
 
-export type Task = { id: string; title: string }
+
