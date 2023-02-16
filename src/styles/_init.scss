@@ -1,0 +1,23 @@
+* {
+  //all: unset;
+  //display: revert;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  background-color: #fff;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+}
