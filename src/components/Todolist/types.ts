@@ -11,5 +11,6 @@ export type TodolistPropsTypes = {
     addTask: (todolistId: string, taskTitle: string) => void;
     toggleCompletedTask: (todolistId: string, taskId: string) => void;
     changeTasksFilter: (todolistId: string, filter: TasksFilter) => void;
+    deleteTask: (todolistId: string, taskId: string) => void;
   };
 };

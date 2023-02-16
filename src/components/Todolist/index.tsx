@@ -40,6 +40,7 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
               taskInfo={task}
               todolistId={todolistInfo.id}
               toggleCompletedTask={handlersState.toggleCompletedTask}
+              deleteTask={handlersState.deleteTask}
             />
           </li>
         ))}

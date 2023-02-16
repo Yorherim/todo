@@ -1,3 +1,24 @@
 .task {
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+
+  .checkbox {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .title {
+    margin-right: 5px;
+  }
+
+  .button {
+    border-radius: 100%;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

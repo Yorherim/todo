@@ -73,6 +73,19 @@ function App() {
         }),
       );
     },
+    deleteTask: (todolistId: string, taskId: string) => {
+      setAllTasks(
+        allTasks.map((tasksGroup) => {
+          if (tasksGroup.todolistId === todolistId) {
+            return {
+              ...tasksGroup,
+              tasks: tasksGroup.tasks.filter(task => task.id !== taskId)
+            };
+          }
+          return tasksGroup;
+        }),
+      );
+    }
   };
 
   const renders = {
