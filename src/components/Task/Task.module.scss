@@ -1,11 +1,13 @@
 .task {
-  margin-bottom: 5px;
+  margin-bottom: 25px;
   display: flex;
   align-items: center;
 
   .checkbox {
     margin-right: 5px;
     cursor: pointer;
+    //width: 10px;
+    //height: 10px;
   }
 
   .title {

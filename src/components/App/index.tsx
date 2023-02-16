@@ -79,13 +79,29 @@ function App() {
           if (tasksGroup.todolistId === todolistId) {
             return {
               ...tasksGroup,
-              tasks: tasksGroup.tasks.filter(task => task.id !== taskId)
+              tasks: tasksGroup.tasks.filter((task) => task.id !== taskId),
             };
           }
           return tasksGroup;
         }),
       );
-    }
+    },
+    changeTaskTitle: (todolistId: string, taskId: string, title: string) => {
+      setAllTasks(
+        allTasks.map((tasksGroup) => {
+          if (tasksGroup.todolistId === todolistId) {
+            return {
+              ...tasksGroup,
+              tasks: tasksGroup.tasks.map((task) => {
+                if (task.id === taskId) task.title = title;
+                return task;
+              }),
+            };
+          }
+          return tasksGroup;
+        }),
+      );
+    },
   };
 
   const renders = {

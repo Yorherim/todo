@@ -1,7 +1,14 @@
 import { TaskPropsType } from "./types";
 import styles from "./Task.module.scss";
+import { TextInput } from "../index";
 
-function Task({ taskInfo, todolistId, toggleCompletedTask, deleteTask }: TaskPropsType) {
+function Task({
+  taskInfo,
+  todolistId,
+  toggleCompletedTask,
+  deleteTask,
+  changeTaskTitle,
+}: TaskPropsType) {
   const handlers = {};
 
   return (
@@ -12,7 +19,13 @@ function Task({ taskInfo, todolistId, toggleCompletedTask, deleteTask }: TaskPro
         onChange={() => toggleCompletedTask(todolistId, taskInfo.id)}
         className={styles.checkbox}
       />
-      <span className={styles.title}>{taskInfo.title}</span>
+      <TextInput
+        title={taskInfo.title}
+        className={styles.title}
+        changeTaskTitle={changeTaskTitle}
+        taskId={taskInfo.id}
+        todolistId={todolistId}
+      />
       <button className={styles.button} onClick={() => deleteTask(todolistId, taskInfo.id)}>
         x
       </button>

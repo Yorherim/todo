@@ -1,0 +1,21 @@
+.inputBox {
+  .error {
+    border: 1px solid red;
+  }
+
+  .errorText {
+    color: red;
+    position: absolute;
+    margin-bottom: 10px;
+  }
+}
+
+.span {
+  max-width: 165px;
+  display: block;
+  word-break: break-all;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
