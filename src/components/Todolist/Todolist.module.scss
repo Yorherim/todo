@@ -1,0 +1,34 @@
+.todolist {
+  .top {
+    display: flex;
+  }
+
+  .input {
+    padding: 2px 5px;
+    margin-right: 5px;
+  }
+
+  .addTaskButton {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 1px solid black;
+  }
+
+  .tasks {
+    padding: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      padding: 2px 5px;
+    }
+  }
+}

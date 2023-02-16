@@ -11,6 +11,10 @@ body {
   background-color: #fff;
 }
 
+li {
+  list-style-type: none;
+}
+
 button {
   &:hover {
     cursor: pointer;

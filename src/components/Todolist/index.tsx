@@ -20,7 +20,7 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
   return (
     <div className={styles.todolist}>
       <h3 className={styles.title}>{todolistInfo.title}</h3>
-      <div>
+      <div className={styles.top}>
         <input
           placeholder={"Write title task..."}
           className={styles.input}
@@ -28,22 +28,25 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
           onChange={handlers.changeInput}
           type={"text"}
         />
-        <button onClick={handlers.addTask}>+</button>
+        <button onClick={handlers.addTask} className={styles.addTaskButton}>+</button>
       </div>
-      <ul>
+
+      <ul className={styles.tasks}>
         {tasks.map((task) => (
-          <Task
-            key={task.id}
-            taskInfo={task}
-            todolistId={todolistInfo.id}
-            toggleCompletedTask={handlersState.toggleCompletedTask}
-          />
+          <li key={task.id}>
+            <Task
+              taskInfo={task}
+              todolistId={todolistInfo.id}
+              toggleCompletedTask={handlersState.toggleCompletedTask}
+            />
+          </li>
         ))}
       </ul>
-      <div>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+
+      <div className={styles.buttons}>
+        <button className={styles.button}>All</button>
+        <button className={styles.button}>Active</button>
+        <button className={styles.button}>Completed</button>
       </div>
     </div>
   );
