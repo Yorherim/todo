@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { nanoid } from "nanoid";
 
 import styles from "./App.module.scss";
 import { Todolist } from "../";
 import { Task } from "../Task/types";
+import { InputTextTodolistCreator } from "../Input-text";
 
 export type todolistsState = { id: string; title: string; tasksFilter: TasksFilter }[];
 export type tasksState = { todolistId: string; tasks: Task[] }[];
@@ -32,7 +33,8 @@ function App() {
     },
   ]);
 
-  console.log(allTasks);
+  console.log("tasks", allTasks);
+  console.log("todolists", todolists);
 
   const handlersState = {
     addTask: (todolistId: string, taskTitle: string) => {
@@ -102,6 +104,22 @@ function App() {
         }),
       );
     },
+    addNewTodolist: (title: string) => {
+      const newTodolistId = nanoid();
+      setTodolists([...todolists, { id: newTodolistId, title, tasksFilter: "all" }]);
+      setAllTasks([...allTasks, { todolistId: newTodolistId, tasks: [] }]);
+    },
+    changeTodolistTitle: (todolistId: string, title: string) => {
+      setTodolists(
+        todolists.map((todolist) => {
+          if (todolist.id === todolistId) {
+            return { ...todolist, title };
+          } else {
+            return todolist;
+          }
+        }),
+      );
+    },
   };
 
   const renders = {
@@ -135,6 +153,9 @@ function App() {
   return (
     <main className={styles.app}>
       <div className="container">
+        <div className={styles.top}>
+          <InputTextTodolistCreator addNewTodolist={handlersState.addNewTodolist} />
+        </div>
         <div className={styles.todolists}>{renders.todolists()}</div>
       </div>
     </main>

@@ -1,10 +1,10 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import clsx from "clsx";
 
 import styles from "./Text-input.module.scss";
-import { TextInputPropsType } from "./types";
+import { SpanInputPropsType } from "./types";
 
-function TextInput({ title, className, changeTaskTitle, taskId, todolistId }: TextInputPropsType) {
+function SpanInput({ title, className, changeTitle, ...props }: SpanInputPropsType) {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [value, setValue] = useState<string>(title);
   const [errorEmptyValue, setErrorEmptyValue] = useState<boolean>(false);
@@ -17,15 +17,15 @@ function TextInput({ title, className, changeTaskTitle, taskId, todolistId }: Te
       setErrorEmptyValue(false);
       setValue(e.currentTarget.value);
     },
-    closeInput: useCallback(() => {
+    closeInput: () => {
       if (value.trim() === "") {
         setErrorEmptyValue(true);
       } else {
-        changeTaskTitle(todolistId, taskId, value);
+        changeTitle(value);
         setErrorEmptyValue(false);
         setEditMode(false);
       }
-    }, [value]),
+    },
   };
 
   return editMode ? (
@@ -35,16 +35,20 @@ function TextInput({ title, className, changeTaskTitle, taskId, todolistId }: Te
         className={clsx(styles.input, errorEmptyValue && styles.error)}
         value={value}
         onChange={handlers.changeValue}
-        onBlur={() => handlers.closeInput()}
+        onBlur={handlers.closeInput}
         autoFocus
       />
       {errorEmptyValue && <p className={styles.errorText}>Title can't be empty</p>}
     </div>
   ) : (
-    <span className={clsx(styles.span, className)} onDoubleClick={handlers.activeEditMode}>
+    <span
+      className={clsx(styles.span, className)}
+      onDoubleClick={handlers.activeEditMode}
+      {...props}
+    >
       {value}
     </span>
   );
 }
 
-export default TextInput;
+export default SpanInput;

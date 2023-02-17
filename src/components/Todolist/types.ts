@@ -8,6 +8,7 @@ export type TodolistPropsTypes = {
   };
   tasks: Task[];
   handlersState: {
+    changeTodolistTitle: (todolistId: string, title: string) => void;
     addTask: (todolistId: string, taskTitle: string) => void;
     toggleCompletedTask: (todolistId: string, taskId: string) => void;
     changeTasksFilter: (todolistId: string, filter: TasksFilter) => void;

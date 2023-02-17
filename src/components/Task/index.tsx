@@ -1,6 +1,6 @@
 import { TaskPropsType } from "./types";
 import styles from "./Task.module.scss";
-import { TextInput } from "../index";
+import { SpanInputTask } from "../index";
 
 function Task({
   taskInfo,
@@ -19,7 +19,7 @@ function Task({
         onChange={() => toggleCompletedTask(todolistId, taskInfo.id)}
         className={styles.checkbox}
       />
-      <TextInput
+      <SpanInputTask
         title={taskInfo.title}
         className={styles.title}
         changeTaskTitle={changeTaskTitle}

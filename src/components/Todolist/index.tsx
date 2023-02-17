@@ -3,6 +3,7 @@ import { ChangeEvent, useState } from "react";
 import styles from "./Todolist.module.scss";
 import { TodolistPropsTypes } from "./types";
 import { Task } from "../";
+import { InputTextTodolist } from "../Input-text";
 
 function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
   const [inputText, setInputText] = useState<string>("");
@@ -19,18 +20,14 @@ function Todolist({ todolistInfo, handlersState, tasks }: TodolistPropsTypes) {
 
   return (
     <div className={styles.todolist}>
-      <h3 className={styles.title}>{todolistInfo.title}</h3>
+      {/*<h3 className={styles.title}>{todolistInfo.title}</h3>*/}
       <div className={styles.top}>
-        <input
-          placeholder={"Write title task..."}
-          className={styles.input}
-          value={inputText}
-          onChange={handlers.changeInput}
-          type={"text"}
+        <InputTextTodolist
+          todolistId={todolistInfo.id}
+          addTask={handlersState.addTask}
+          changeTodolistTitle={handlersState.changeTodolistTitle}
+          title={todolistInfo.title}
         />
-        <button onClick={handlers.addTask} className={styles.addTaskButton}>
-          +
-        </button>
       </div>
 
       <ul className={styles.tasks}>
