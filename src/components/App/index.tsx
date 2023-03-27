@@ -6,7 +6,8 @@ import { Todolist } from "../";
 import { Task } from "../Task/types";
 import { InputTextTodolistCreator } from "../Input-text";
 
-export type todolistsState = { id: string; title: string; tasksFilter: TasksFilter }[];
+export type Todolist = { id: string; title: string; tasksFilter: TasksFilter };
+export type todolistsState = Todolist[];
 export type tasksState = { todolistId: string; tasks: Task[] }[];
 export type TasksFilter = "all" | "active" | "completed";
 
@@ -142,7 +143,7 @@ function App() {
         return (
           <Todolist
             key={todolist.id}
-            todolistInfo={todolist}
+            todolist={todolist}
             handlersState={handlersState}
             tasks={tasks}
           />

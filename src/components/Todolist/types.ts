@@ -1,11 +1,8 @@
 import { Task } from "../Task/types";
-import { TasksFilter } from "../App";
+import { TasksFilter, Todolist } from "../App";
 
 export type TodolistPropsTypes = {
-  todolistInfo: {
-    id: string;
-    title: string;
-  };
+  todolist: Todolist;
   tasks: Task[];
   handlersState: {
     changeTodolistTitle: (todolistId: string, title: string) => void;
