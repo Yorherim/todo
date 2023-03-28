@@ -1,7 +1,7 @@
 import styles from "./InputText.module.scss";
 import InputText from "./Input-text";
 import { InputTextTodolistPropsType } from "./types";
-import { SpanInputTodolist } from "../Span-input";
+import { SpanInputTodolist } from "../span-input";
 
 function InputTextTodolist({
   todolistId,

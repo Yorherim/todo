@@ -1,8 +1,8 @@
 import styles from "./Todolist.module.scss";
 import { TodolistPropsTypes } from "./types";
 import { ButtonTodolist, Task } from "../";
-import { InputTextTodolist } from "../Input-text";
-import { TasksFilter } from "../App";
+import { InputTextTodolist } from "../input-text";
+import { TasksFilter } from "../app/types";
 
 function Todolist({ todolist, handlersState, tasks }: TodolistPropsTypes) {
   const renders = {
@@ -19,8 +19,9 @@ function Todolist({ todolist, handlersState, tasks }: TodolistPropsTypes) {
     )),
     buttons: () => {
       const filters: TasksFilter[] = ["all", "active", "completed"];
-      return filters.map((value: TasksFilter) => (
+      return filters.map((value: TasksFilter, i) => (
         <ButtonTodolist
+          key={`${todolist.id}${i}`}
           todolist={todolist}
           value={value}
           changeTasksFilter={handlersState.changeTasksFilter}

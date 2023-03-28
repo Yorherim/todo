@@ -1,5 +1,5 @@
-import { Task } from "../Task/types";
-import { TasksFilter, Todolist } from "../App";
+import { Task } from "../task/types";
+import { TasksFilter, Todolist } from "../app";
 
 export type TodolistPropsTypes = {
   todolist: Todolist;

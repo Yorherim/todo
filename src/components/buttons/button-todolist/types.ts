@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { TasksFilter, Todolist } from "../../App";
+import { TasksFilter, Todolist } from "../../app";
 
 export type ButtonTodolistProps = ComponentProps<"button"> & {
   todolist: Todolist;
