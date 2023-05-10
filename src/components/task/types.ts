@@ -1,4 +1,4 @@
-export type Task = { id: string; title: string; isCompleted: boolean };
+export type Task = { id: string; title: string; isCompleted: boolean; todolistId: string };
 
 export type TaskPropsType = {
   taskInfo: Task;

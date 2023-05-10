@@ -1,13 +1,10 @@
 import { Task } from "../task/types";
 
-export type Todolist = { id: string; title: string; tasksFilter: TasksFilter };
+export type Todolist = { id: string; title: string; tasksFilter: TasksFilter; projectId: string };
 
-export type todolistsState = {
-  projectId: string;
-  todolists: Todolist[];
-}[];
+export type todolistsState = Todolist[];
 
-export type tasksState = { todolistId: string; tasks: Task[] }[];
+export type tasksState = Task[];
 
 export type TasksFilter = "all" | "active" | "completed";
 
